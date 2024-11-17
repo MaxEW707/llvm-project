@@ -1582,6 +1582,7 @@ void MicrosoftCXXNameMangler::mangleOperatorName(OverloadedOperatorKind OO,
     unsigned DiagID = Diags.getCustomDiagID(DiagnosticsEngine::Error,
       "cannot mangle this conditional operator yet");
     Diags.Report(Loc, DiagID);
+    llvm_unreachable("cannot mangle this conditional operator yet");
     break;
   }
 
@@ -1678,6 +1679,7 @@ void MicrosoftCXXNameMangler::mangleExpression(
       DiagnosticsEngine::Error, "cannot yet mangle expression type %0");
   Diags.Report(E->getExprLoc(), DiagID) << E->getStmtClassName()
                                         << E->getSourceRange();
+  llvm_unreachable("cannot yet mangle expression type");
 }
 
 void MicrosoftCXXNameMangler::mangleTemplateArgs(
@@ -2114,6 +2116,7 @@ void MicrosoftCXXNameMangler::mangleTemplateArgValue(QualType T,
   unsigned DiagID = Diags.getCustomDiagID(
       DiagnosticsEngine::Error, "cannot mangle this template argument yet");
   Diags.Report(DiagID);
+  llvm_unreachable("cannot mangle this template argument yet");
 }
 
 void MicrosoftCXXNameMangler::mangleObjCProtocol(const ObjCProtocolDecl *PD) {
@@ -2745,6 +2748,7 @@ void MicrosoftCXXNameMangler::mangleType(const BuiltinType *T, Qualifiers,
         DiagnosticsEngine::Error, "cannot mangle this built-in %0 type yet");
     Diags.Report(Range.getBegin(), DiagID)
         << T->getName(Context.getASTContext().getPrintingPolicy()) << Range;
+    llvm_unreachable("cannot mangle this built-in type yet");
     break;
   }
   }
@@ -3066,6 +3070,7 @@ void MicrosoftCXXNameMangler::mangleCallingConvention(CallingConv CC,
   unsigned DiagID = Diags.getCustomDiagID(
       DiagnosticsEngine::Error, "cannot mangle this calling convention yet");
   Diags.Report(Range.getBegin(), DiagID) << Range;
+  llvm_unreachable("cannot mangle this calling convention yet");
 }
 void MicrosoftCXXNameMangler::mangleCallingConvention(const FunctionType *T,
                                                       SourceRange Range) {
@@ -3091,6 +3096,7 @@ void MicrosoftCXXNameMangler::mangleType(const UnresolvedUsingType *T,
     "cannot mangle this unresolved dependent type yet");
   Diags.Report(Range.getBegin(), DiagID)
     << Range;
+  llvm_unreachable("cannot mangle this unresolved dependent type yet");
 }
 
 // <type>        ::= <union-type> | <struct-type> | <class-type> | <enum-type>
@@ -3202,6 +3208,7 @@ void MicrosoftCXXNameMangler::mangleArrayType(const ArrayType *T) {
         "cannot mangle this dependent-length array yet");
       Diags.Report(DSAT->getSizeExpr()->getExprLoc(), DiagID)
         << DSAT->getBracketsRange();
+      llvm_unreachable("cannot mangle this dependent-length array yet");
       return;
     } else {
       break;
@@ -3246,6 +3253,7 @@ void MicrosoftCXXNameMangler::mangleType(const TemplateTypeParmType *T,
     "cannot mangle this template type parameter type yet");
   Diags.Report(Range.getBegin(), DiagID)
     << Range;
+  llvm_unreachable("cannot mangle this template type parameter type yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(const SubstTemplateTypeParmPackType *T,
@@ -3255,6 +3263,7 @@ void MicrosoftCXXNameMangler::mangleType(const SubstTemplateTypeParmPackType *T,
     "cannot mangle this substituted parameter pack yet");
   Diags.Report(Range.getBegin(), DiagID)
     << Range;
+  llvm_unreachable("cannot mangle this substituted parameter pack yet");
 }
 
 // <type> ::= <pointer-type>
@@ -3410,6 +3419,7 @@ void MicrosoftCXXNameMangler::mangleType(const DependentVectorType *T,
       DiagnosticsEngine::Error,
       "cannot mangle this dependent-sized vector type yet");
   Diags.Report(Range.getBegin(), DiagID) << Range;
+  llvm_unreachable("cannot mangle this dependent-sized vector type yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(const DependentSizedExtVectorType *T,
@@ -3419,6 +3429,7 @@ void MicrosoftCXXNameMangler::mangleType(const DependentSizedExtVectorType *T,
     "cannot mangle this dependent-sized extended vector type yet");
   Diags.Report(Range.getBegin(), DiagID)
     << Range;
+  llvm_unreachable("cannot mangle this dependent-sized extended vector type yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(const ConstantMatrixType *T,
@@ -3427,6 +3438,7 @@ void MicrosoftCXXNameMangler::mangleType(const ConstantMatrixType *T,
   unsigned DiagID = Diags.getCustomDiagID(DiagnosticsEngine::Error,
                                           "Cannot mangle this matrix type yet");
   Diags.Report(Range.getBegin(), DiagID) << Range;
+  llvm_unreachable("Cannot mangle this matrix type yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(const DependentSizedMatrixType *T,
@@ -3436,6 +3448,7 @@ void MicrosoftCXXNameMangler::mangleType(const DependentSizedMatrixType *T,
       DiagnosticsEngine::Error,
       "Cannot mangle this dependent-sized matrix type yet");
   Diags.Report(Range.getBegin(), DiagID) << Range;
+  llvm_unreachable("Cannot mangle this dependent-sized matrix type yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(const DependentAddressSpaceType *T,
@@ -3445,6 +3458,7 @@ void MicrosoftCXXNameMangler::mangleType(const DependentAddressSpaceType *T,
       DiagnosticsEngine::Error,
       "cannot mangle this dependent address space type yet");
   Diags.Report(Range.getBegin(), DiagID) << Range;
+  llvm_unreachable("cannot mangle this dependent address space type yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(const ObjCInterfaceType *T, Qualifiers,
@@ -3519,6 +3533,7 @@ void MicrosoftCXXNameMangler::mangleType(const TemplateSpecializationType *T,
     "cannot mangle this template specialization type yet");
   Diags.Report(Range.getBegin(), DiagID)
     << Range;
+  llvm_unreachable("cannot mangle this template specialization type yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(const DependentNameType *T, Qualifiers,
@@ -3528,6 +3543,7 @@ void MicrosoftCXXNameMangler::mangleType(const DependentNameType *T, Qualifiers,
     "cannot mangle this dependent name type yet");
   Diags.Report(Range.getBegin(), DiagID)
     << Range;
+  llvm_unreachable("cannot mangle this dependent name type yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(
@@ -3538,6 +3554,7 @@ void MicrosoftCXXNameMangler::mangleType(
     "cannot mangle this dependent template specialization type yet");
   Diags.Report(Range.getBegin(), DiagID)
     << Range;
+  llvm_unreachable("cannot mangle this dependent template specialization type yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(const PackExpansionType *T, Qualifiers,
@@ -3547,6 +3564,7 @@ void MicrosoftCXXNameMangler::mangleType(const PackExpansionType *T, Qualifiers,
     "cannot mangle this pack expansion yet");
   Diags.Report(Range.getBegin(), DiagID)
     << Range;
+  llvm_unreachable("cannot mangle this pack expansion yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(const PackIndexingType *T,
@@ -3562,6 +3580,7 @@ void MicrosoftCXXNameMangler::mangleType(const TypeOfType *T, Qualifiers,
     "cannot mangle this typeof(type) yet");
   Diags.Report(Range.getBegin(), DiagID)
     << Range;
+  llvm_unreachable("cannot mangle this typeof(type) yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(const TypeOfExprType *T, Qualifiers,
@@ -3571,6 +3590,7 @@ void MicrosoftCXXNameMangler::mangleType(const TypeOfExprType *T, Qualifiers,
     "cannot mangle this typeof(expression) yet");
   Diags.Report(Range.getBegin(), DiagID)
     << Range;
+  llvm_unreachable("cannot mangle this typeof(expression) yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(const DecltypeType *T, Qualifiers,
@@ -3580,6 +3600,7 @@ void MicrosoftCXXNameMangler::mangleType(const DecltypeType *T, Qualifiers,
     "cannot mangle this decltype() yet");
   Diags.Report(Range.getBegin(), DiagID)
     << Range;
+  llvm_unreachable("cannot mangle this decltype() yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(const UnaryTransformType *T,
@@ -3600,6 +3621,7 @@ void MicrosoftCXXNameMangler::mangleType(const AutoType *T, Qualifiers,
     "cannot mangle this 'auto' type yet");
   Diags.Report(Range.getBegin(), DiagID)
     << Range;
+  llvm_unreachable("cannot mangle this 'auto' type yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(
@@ -3611,6 +3633,7 @@ void MicrosoftCXXNameMangler::mangleType(
     "cannot mangle this deduced class template specialization type yet");
   Diags.Report(Range.getBegin(), DiagID)
     << Range;
+  llvm_unreachable("cannot mangle this deduced class template specialization type yet");
 }
 
 void MicrosoftCXXNameMangler::mangleType(const AtomicType *T, Qualifiers,
@@ -3688,6 +3711,7 @@ void MicrosoftCXXNameMangler::mangleType(const DependentBitIntType *T,
   unsigned DiagID = Diags.getCustomDiagID(
       DiagnosticsEngine::Error, "cannot mangle this DependentBitInt type yet");
   Diags.Report(Range.getBegin(), DiagID) << Range;
+  llvm_unreachable("cannot mangle this DependentBitInt type yet");
 }
 
 // <this-adjustment> ::= <no-adjustment> | <static-adjustment> |
