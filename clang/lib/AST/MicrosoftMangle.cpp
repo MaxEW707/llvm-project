@@ -39,6 +39,10 @@
 #include <functional>
 #include <optional>
 
+#ifdef NDEBUG
+#error Please build the debug configuration
+#endif
+
 using namespace clang;
 
 namespace {

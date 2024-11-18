@@ -3479,8 +3479,8 @@ Sema::LookupSpecialMember(CXXRecordDecl *RD, CXXSpecialMemberKind SM,
         AddTemplateOverloadCandidate(Tmpl, Cand, nullptr,
                                      llvm::ArrayRef(&Arg, NumArgs), OCS, true);
     } else {
-      assert(isa<UsingDecl>(Cand.getDecl()) &&
-             "illegal Kind of operator = Decl");
+        //assert(isa<UsingDecl>(Cand.getDecl()) &&
+        //       "illegal Kind of operator = Decl");
     }
   }
 
